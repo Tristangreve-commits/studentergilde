@@ -5,3 +5,7 @@ assets/
 HEMMELIGT.md
 print/guldbilletter.html
 print/guldbilletter.pdf
+
+# Planlægningsarket har navne og adresser
+planlaegning/
+*.xlsx
