@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Middagskort, til print</title>
-<link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
@@ -12,7 +12,7 @@
   @page { size: A4; margin: 0; }
   :root {
     --wine: #3a1016; --ink: #e7e4de; --muted: #c2a9ac; --gold: #d6b25e;
-    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -28,14 +28,14 @@
     outline: .2mm solid #fff;
   }
   .top { display: flex; justify-content: space-between; align-items: baseline; color: var(--gold); }
-  .mono { font: 400 13pt/1 "Gambarino", serif; }
+  .mono { font: 800 13pt/1 "Zodiak", serif; }
   .top span:last-child { font-size: 8.5pt; }
-  .title { margin-top: 9mm; font: 400 44pt/.86 "Gambarino", serif; letter-spacing: -.035em; }
+  .title { margin-top: 9mm; font: 800 44pt/.86 "Zodiak", serif; letter-spacing: -.035em; }
   .to { margin-top: 9mm; }
   .to p { color: var(--muted); font-size: 8.5pt; }
   .to .line { height: 10mm; border-bottom: .35mm solid var(--gold); }
   .body { margin-top: 7mm; font-size: 10pt; }
-  .body strong { display: block; font: 400 13pt/1.1 "Gambarino", serif; color: var(--gold); margin-bottom: 2mm; }
+  .body strong { display: block; font: 800 13pt/1.1 "Zodiak", serif; color: var(--gold); margin-bottom: 2mm; }
   .bottom { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; align-items: end; }
   .qr { width: 24mm; height: 24mm; background: var(--ink); padding: 1.6mm; }
   .qr svg { width: 100%; height: 100%; display: block; }

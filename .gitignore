@@ -9,3 +9,4 @@ print/guldbilletter.pdf
 # Planlægningsarket har navne og adresser
 planlaegning/
 *.xlsx
+.backup*/

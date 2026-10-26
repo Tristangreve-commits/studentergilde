@@ -361,3 +361,44 @@ figure img, figure video {
 
   .foot-cols { grid-template-columns: 1fr 1fr; row-gap: 32px; }
 }
+
+/* ---------- Rå udgave: tungere skrift, grovere korn ----------
+   Alt herunder kan slettes for at komme tilbage til den rolige udgave. */
+:root {
+  --display: "Zodiak", "Gambarino", "Times New Roman", serif;
+  --step-head: clamp(2.5rem, 1.4rem + 4.6vw, 5.75rem);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+}
+body { background-size: 260px; }
+figure::after { background-size: 260px, 120px; opacity: 1; }
+figure img, figure video { filter: grayscale(1) contrast(1.6) brightness(.82); }
+.hero-photo img { filter: grayscale(1) contrast(1.5) brightness(.55); }
+
+.hero-title, .h-big, .h-mid, .giant, .win strong, .prizes dt, .monogram, .wordmark, .line, .bigword {
+  font-weight: 800;
+}
+.rough { filter: url(#blaek); }
+
+.hero { --fs: clamp(130px, 17vw, 280px); }
+.line { text-transform: uppercase; letter-spacing: -.04em; }
+.hero-title { letter-spacing: -.035em; line-height: .9; max-width: 16ch; }
+.h-big, .h-mid { letter-spacing: -.035em; line-height: .9; }
+.aftenen-col { min-width: 0; }
+.giant { font-size: 19.5cqw; text-transform: uppercase; letter-spacing: -.05em; line-height: .82; }
+.bigword { font-size: 17vw; text-transform: uppercase; letter-spacing: -.05em; }
+.hero { --sq: clamp(220px, 21vw, 320px); }
+.hero-copy { padding-top: 44px; padding-bottom: 36px; }
+.band { margin-top: 3vh; }
+.wordmark { text-transform: uppercase; letter-spacing: -.05em; }
+.hero-fact { font-weight: 500; letter-spacing: .01em; }
+
+@media (max-width: 1000px) {
+  .aftenen { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .bigword { font-size: 15vw; }
+  .rsvp-top .rsvp-how { font-size: var(--step-body); }
+}
+@media (max-width: 640px) {
+  .hero { --fs: 26vw; }
+  .bigword { font-size: 16vw; }
+  .hero { --sq: 46vw; }
+}
