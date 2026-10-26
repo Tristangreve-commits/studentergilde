@@ -13,14 +13,16 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { width: 1920px; height: 1005px; overflow: hidden; background: var(--bg) var(--grain); color: var(--ink); font-family: "General Sans", sans-serif; position: relative; }
-  .photo { position: absolute; left: 50%; top: 150px; width: 440px; height: 440px; transform: translateX(-50%); overflow: hidden; }
+  .photo { position: absolute; left: 50%; top: 150px; width: 380px; height: 380px; transform: translateX(-50%); overflow: hidden; }
   .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 68% 14%; filter: grayscale(1) contrast(1.25) brightness(.6); }
   .photo::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 240px, 140px; mix-blend-mode: overlay; }
-  .line { position: absolute; top: 370px; left: 50%; transform: translate(-50%, -52%); white-space: nowrap; font: 400 330px/1 "Gambarino", serif; letter-spacing: -.035em; }
+  .line { position: absolute; top: 340px; left: 50%; transform: translate(-50%, -52%); white-space: nowrap; font: 400 280px/1 "Gambarino", serif; letter-spacing: -.035em; }
   .line i { display: inline-block; width: 50px; height: 50px; border-radius: 50%; background: currentColor; margin: 0 70px; vertical-align: middle; }
-  .bottom { position: absolute; left: 0; right: 0; bottom: 110px; text-align: center; }
-  .title { font: 400 84px/1 "Gambarino", serif; letter-spacing: -.02em; }
-  .fact { margin-top: 26px; font-size: 40px; color: var(--gold); }
+  .bottom { position: absolute; left: 0; right: 0; bottom: 90px; text-align: center; }
+  .title { font: 400 96px/1 "Gambarino", serif; letter-spacing: -.02em; }
+  .facts { margin-top: 44px; display: flex; justify-content: center; gap: 90px; white-space: nowrap; }
+  .facts p { font-size: 26px; color: #a39d92; }
+  .facts p + p { margin-top: 8px; font-size: 34px; color: var(--gold); }
   .mono { position: absolute; top: 56px; left: 0; right: 0; text-align: center; font: 400 44px/1 "Gambarino", serif; }
 </style>
 </head>
@@ -29,8 +31,13 @@
   <figure class="photo"><img src="../img/huen-1938.jpg" alt=""></figure>
   <p class="line">Sam &amp; Tristan</p>
   <div class="bottom">
-    <p class="title">Du er inviteret til vores studentergilde</p>
-    <p class="fact">Tirsdag 6. juli 2027, kl. 21 til sent. Dresscode: fint.</p>
+    <p class="title">Studentergilde</p>
+    <div class="facts">
+      <div><p>Hvornår</p><p>Tirsdag 6. juli 2027</p></div>
+      <div><p>Tid</p><p>Kl. 21 til sent</p></div>
+      <div><p>Hvor</p><p>Standgårdsparken 158</p></div>
+      <div><p>Dresscode</p><p>Fint</p></div>
+    </div>
   </div>
 </body>
 </html>
