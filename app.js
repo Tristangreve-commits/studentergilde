@@ -1,16 +1,8 @@
-// Indsæt adressen fra Google Apps Script her (se README.md). Den ender på /exec.
-const SHEET_URL = '';
-
 // Guldbilletterne. Koderne står ikke her, kun et fingeraftryk af dem, så ingen kan finde dem i kildekoden.
 const PRIZES = {
   '01057777bb7f63c71e9eb518998c347602cecfc088677898de5096fd8c7ad159': ['En flaske champagne', 'Tag billetten med, så venter flasken på dig i baren.'],
   'c10bc9f7439f4b17e574fcc7631f17848272aa978828c7281456bdd68bf1b731': ['Gin og tonic', 'En flaske gin, tonic og agurk. Tag billetten med, så får du det hele.'],
   'd5a2988e047cf88c4431f3eba9626eac08d2db72f5f899fc534f7418017ce083': ['Rom og ginger beer', 'En flaske rom, ginger beer og lime. Tag billetten med, så får du det hele.'],
-};
-
-const send = (data) => {
-  if (!SHEET_URL) return Promise.reject(new Error('mangler SHEET_URL'));
-  return fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) });
 };
 
 // Guldbillet
@@ -27,35 +19,7 @@ codeForm.addEventListener('submit', async (e) => {
   codeOut.innerHTML = prize
     ? `<strong>Du har vundet. ${prize[0]}.</strong><p>${prize[1]}</p>`
     : '<p>Den kode kender vi ikke. Tjek bogstaverne på billetten, og prøv igen.</p>';
-  if (prize) send({ type: 'Guldbillet', navn: '', svar: prize[0], kode: code }).catch(() => {});
 });
-
-// Tilmelding
-const rsvp = document.getElementById('rsvp');
-const status = document.getElementById('rsvp-status');
-const word = rsvp.querySelector('.bw-text');
-if (SHEET_URL) rsvp.action = SHEET_URL;
-rsvp.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const navn = rsvp.navn.value.trim();
-  const svar = rsvp.svar.value;
-  if (!navn) return rsvp.navn.focus();
-  status.textContent = 'Sender...';
-  try {
-    await send({ type: 'Tilmelding', navn, svar, kode: '' });
-    word.textContent = svar === 'Kommer' ? 'Tak' : 'Ærgerligt';
-    status.textContent = svar === 'Kommer'
-      ? `Tak, ${navn}. Du står på listen. Vi ses 15. juli.`
-      : `Tak for svaret, ${navn}. Vi skåler for dig.`;
-    try { localStorage.setItem('st-svar', JSON.stringify({ navn, svar })); } catch {}
-  } catch {
-    status.textContent = 'Det gik ikke igennem. Skriv dit svar direkte til Sam eller Tristan.';
-  }
-});
-try {
-  const old = JSON.parse(localStorage.getItem('st-svar') || 'null');
-  if (old) { rsvp.navn.value = old.navn; rsvp.querySelector(`[value="${old.svar}"]`).checked = true; }
-} catch {}
 
 // Store ord fylder hele bredden på én linje
 const fit = (el, box) => {
@@ -80,7 +44,7 @@ const groups = [
   ['.intro-text > *', '.intro-photo', '.intro-note'],
   ['.side-l', '.giant', '.bars > details', '.side-r'],
   ['.guld-photo', '.guld-body > *'],
-  ['.rsvp-top > div', '.bigword'],
+  ['.rsvp-top > *', '.bigword'],
   ['.faq h2', '.faq-photo', '.qs details'],
   ['.foot-cols > div'],
 ];

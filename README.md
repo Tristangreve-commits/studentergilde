@@ -5,7 +5,6 @@ Invitationssiden, brevet og guldbilletterne.
 - `index.html`, `style.css`, `app.js`: siden, som QR-koden peger på
 - `print/brev.pdf`: invitationen, klar til print
 - `print/guldbilletter.pdf`: de tre guldbilletter (ligger kun lokalt, se HEMMELIGT.md)
-- `apps-script.gs`: koden, der skriver tilmeldinger ind i jeres Google Sheet
 
 ## Læg siden op på GitHub Pages
 
@@ -16,13 +15,9 @@ Invitationssiden, brevet og guldbilletterne.
 
 Hedder repoet eller brugeren noget andet, så ret `URL_TIL_SIDEN` i `print/brev.html` og lav PDF'en igen, før I printer.
 
-## Tilmeldinger i Google Sheet
+## Tilmeldinger
 
-1. Lav et nyt Google Sheet, fx "Studentergilde tilmeldinger".
-2. Udvidelser, Apps Script. Slet det, der står, og indsæt indholdet af `apps-script.gs`. Gem.
-3. Implementer, Ny implementering, type "Webapp". Udfør som: dig selv. Hvem har adgang: Alle. Implementer, og giv lov.
-4. Kopiér webapp-adressen (den ender på `/exec`), og sæt den ind i `SHEET_URL` øverst i `app.js`.
-5. Skub ændringen op. Nu lander hver tilmelding som en række i arket, og når nogen indløser en guldbillet, kommer der også en række.
+Tilmeld-knappen på siden sender gæsterne til Facebook-begivenheden (https://fb.me/2iLRNu7Vm5uBAdh). Der svarer de Deltager eller Kan ikke deltage, og I kan se svarene i begivenheden. Vil I bruge et andet link, så søg efter `fb.me` i `index.html` og ret det.
 
 ## Ret dato, adresse og tekst
 
