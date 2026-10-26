@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Invitation, til print</title>
+<link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* A4, foldes i tre til en lang konvolut (C65/DL, 110 x 220 mm).
+     Side 1 er ydersiden, side 2 er indersiden. Print dobbeltsidet, vend på den lange kant. */
+  @page { size: A4; margin: 0; }
+  :root {
+    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #777; font: 400 10.5pt/1.45 "General Sans", sans-serif; color: var(--ink); }
+  .page {
+    width: 210mm; height: 297mm; margin: 10mm auto; overflow: hidden; position: relative;
+    background: var(--bg) var(--grain); background-size: 300px;
+    display: grid; grid-template-rows: 99mm 99mm 99mm;
+    page-break-after: always; break-after: page;
+  }
+  @media print { body { background: none; } .page { margin: 0; } }
+  .panel { position: relative; padding: 12mm 14mm; overflow: hidden; }
+  .flip { transform: rotate(180deg); }
+  .display { font-family: "Gambarino", serif; font-weight: 400; letter-spacing: -.02em; line-height: .95; }
+  .gold { color: var(--gold); }
+  .muted { color: var(--muted); }
+
+  /* små foldemærker i kanten */
+  .page::before, .page::after {
+    content: ""; position: absolute; left: 0; width: 4mm; height: .3mm; background: var(--muted); opacity: .6;
+  }
+  .page::before { top: 99mm; }
+  .page::after { top: 198mm; }
+  .tick-r { position: absolute; right: 0; width: 4mm; height: .3mm; background: var(--muted); opacity: .6; }
+
+  /* ---------- Yderside ---------- */
+  .cover { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 10mm; }
+  .seal {
+    width: 46mm; height: 46mm; border-radius: 50%;
+    background: var(--gold) var(--grain); color: var(--bg);
+    display: grid; place-items: center; justify-self: center;
+  }
+  .seal span { font: 400 21mm/1 "Gambarino", serif; letter-spacing: -.04em; margin-top: -2mm; }
+  .to p { font-size: 11pt; }
+  .to .line { height: 13mm; border-bottom: .35mm solid var(--gold); margin: 1mm 0 7mm; }
+  .to .line.short { width: 28mm; }
+  .to .label { color: var(--muted); }
+
+  .back { display: grid; place-items: center; text-align: center; }
+  .back .display { font-size: 22pt; }
+  .back p + p { margin-top: 4mm; color: var(--muted); font-size: 9.5pt; }
+
+  .tease { display: grid; grid-template-columns: 62mm 1fr; gap: 12mm; align-items: center; padding-top: 10mm; padding-bottom: 10mm; }
+  .tease figure { height: 77mm; overflow: hidden; position: relative; }
+  .tease figure img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 15%; filter: grayscale(1) contrast(1.3) brightness(.85); }
+  .tease figure::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 240px, 140px; mix-blend-mode: overlay; }
+  .tease .display { font-size: 34pt; }
+  .tease p:last-child { margin-top: 6mm; color: var(--gold); font-size: 11pt; }
+
+  /* ---------- Inderside ---------- */
+  .a { display: grid; grid-template-rows: auto 1fr auto; }
+  .a-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .dear { display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; }
+  .dear .line { width: 70mm; border-bottom: .35mm solid var(--gold); height: 9mm; }
+  .mono { font: 400 16pt/1 "Gambarino", serif; }
+  .name { font-size: 31.5mm; line-height: .82; letter-spacing: -.04em; white-space: nowrap; margin-left: -1mm; align-self: end; }
+  .a-sub { margin-top: 4mm; font-size: 12pt; }
+
+  .b { display: grid; grid-template-columns: 1fr 1fr; gap: 12mm; align-items: start; }
+  .b .when { font-size: 26pt; }
+  .b .facts { margin-top: 5mm; display: grid; gap: 1mm; font-size: 11.5pt; }
+  .prog { display: grid; gap: 4mm; }
+  .prog h2 { font: 400 15pt/1 "Gambarino", serif; color: var(--gold); margin-bottom: 1mm; }
+  .prog .row { display: flex; justify-content: space-between; gap: 6mm; font-size: 11pt; padding: 2.2mm 3mm; background: #1d1a17; }
+  .prog .row span:first-child { font-variant-numeric: tabular-nums; color: var(--gold); }
+  .prog p { font-size: 9.5pt; color: var(--muted); margin-top: 2mm; }
+
+  .c { display: grid; grid-template-columns: 46mm 1fr; gap: 12mm; align-items: center; }
+  .qr { width: 46mm; height: 46mm; background: var(--paper); padding: 3mm; display: grid; place-items: center; }
+  .qr svg, .qr img { width: 100%; height: 100%; display: block; }
+  .c .display { font-size: 28pt; }
+  .c p { margin-top: 4mm; max-width: 95mm; }
+  .c .url { margin-top: 4mm; font-size: 8.5pt; color: var(--muted); word-break: break-all; }
+</style>
+</head>
+<body>
+
+<!-- SIDE 1: YDERSIDE -->
+<section class="page">
+  <i class="tick-r" style="top:99mm"></i><i class="tick-r" style="top:198mm"></i>
+
+  <!-- Forsiden, når brevet er foldet (står på hovedet her, så den vender rigtigt efter foldning) -->
+  <div class="panel cover flip">
+    <div class="seal"><span>S&amp;T</span></div>
+    <div class="to">
+      <p class="label">Personlig invitation til</p>
+      <div class="line"></div>
+      <p class="label">Medlem nr.</p>
+      <div class="line short"></div>
+    </div>
+  </div>
+
+  <!-- Bagsiden af det foldede brev -->
+  <div class="panel back">
+    <div>
+      <p class="display">Sam &amp; Tristan</p>
+      <p>Privat og personlig. Må kun åbnes af modtageren.</p>
+    </div>
+  </div>
+
+  <!-- Det første man ser, når forsiden løftes -->
+  <div class="panel tease flip">
+    <figure><img src="../img/huen-1938.jpg" alt=""></figure>
+    <div>
+      <p class="display">For én nat er du medlem.</p>
+      <p>Fold ud</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIDE 2: INDERSIDE -->
+<section class="page">
+  <i class="tick-r" style="top:99mm"></i><i class="tick-r" style="top:198mm"></i>
+
+  <div class="panel a">
+    <div class="a-top">
+      <div class="dear"><span>Kære</span><span class="line"></span></div>
+      <span class="mono gold">S&amp;T</span>
+    </div>
+    <div></div>
+    <div>
+      <p class="display name">Sam &amp; Tristan</p>
+      <p class="a-sub">er blevet studenter og inviterer dig til studentergilde.</p>
+    </div>
+  </div>
+
+  <div class="panel b">
+    <div>
+      <p class="display when gold">Torsdag 15. juli 2027</p>
+      <div class="facts">
+        <p>Kl. 21 til sent</p>
+        <p>Gyntelsbjerg 1</p>
+        <p>Dresscode: fint</p>
+      </div>
+    </div>
+    <div class="prog">
+      <h2>Aftenen</h2>
+      <div class="row"><span>21.00</span><span>Cocktail hour</span></div>
+      <div class="row"><span>23.00</span><span>DJ set til sent</span></div>
+      <p>Tre af brevene har en guldbillet. Ligger der en i dit, har du vundet en flaske.</p>
+    </div>
+  </div>
+
+  <div class="panel c">
+    <div class="qr" id="qr"></div>
+    <div>
+      <p class="display">Scan og tilmeld dig</p>
+      <p>Svar senest 1. juli 2027. Har du en guldbillet, så skriv koden på siden, og tag billetten med på aftenen.</p>
+      <p class="url" id="url"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const URL_TIL_SIDEN = 'https://tristangreve-commits.github.io/studentergilde/';
+  const qr = qrcode(0, 'M'); qr.addData(URL_TIL_SIDEN); qr.make();
+  document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  document.getElementById('url').textContent = URL_TIL_SIDEN.replace('https://', '');
+</script>
+</body>
+</html>

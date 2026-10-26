@@ -1,0 +1,7 @@
+.DS_Store
+.taste-skill/
+assets/
+# Guldbilletternes koder må ikke ligge offentligt på GitHub
+HEMMELIGT.md
+print/guldbilletter.html
+print/guldbilletter.pdf
