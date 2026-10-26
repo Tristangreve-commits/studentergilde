@@ -27,7 +27,7 @@ Dato, tid og adresse står direkte i `index.html` og `print/brev.html`. Søg eft
 
 - Brevet er A4, printet dobbeltsidet (vend på den lange kant) og foldet i tre, så det passer i en lang konvolut (C65/DL, 110 x 220 mm). De små streger i kanten viser, hvor der skal foldes.
 - Fold den nederste tredjedel op først, og så den øverste ned over. Så vender forsiden med seglet udad.
-- Skriv gæstens navn og medlemsnummer på forsiden og navnet efter "Kære" indeni.
+- Skriv gæstens navn på forsiden og navnet efter "Kære" indeni.
 - Brevet er mørkt hele vejen ud til kanten. En hjemmeprinter laver en hvid kant og bruger meget sort blæk, så et trykkeri giver det pæneste resultat. Tykt papir (200 til 250 g) føles mest eksklusivt.
 - Guldbilletterne ser bedst ud på guld- eller cremefarvet karton.
 
