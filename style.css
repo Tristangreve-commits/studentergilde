@@ -192,14 +192,14 @@ figure img, figure video {
 .bars details { background: var(--wine-step); }
 .bars summary {
   list-style: none; cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px;
   min-height: 60px; padding: 0 20px;
   font-weight: 500;
   transition: background-color .18s;
 }
 .bars summary::-webkit-details-marker { display: none; }
-.bars summary b { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
-.bars summary::after { content: "+"; font: 400 var(--step-lead)/1 var(--text); margin-left: 8px; transition: transform .25s var(--ease); }
+.bars summary b { justify-self: center; text-align: center; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bars summary::after { justify-self: end; content: "+"; font: 400 var(--step-lead)/1 var(--text); margin-left: 8px; transition: transform .25s var(--ease); }
 .bars details[open] summary::after { transform: rotate(45deg); }
 .bars summary:hover { background: #561d26; }
 .bars ul { padding: 4px 20px 0; display: grid; gap: 14px; }
