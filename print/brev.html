@@ -12,7 +12,7 @@
      Side 1 er ydersiden, side 2 er indersiden. Print dobbeltsidet og vend på den korte kant. */
   @page { size: A4 landscape; margin: 0; }
   :root {
-    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de;
+    --bg: #120e0a; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,16 +76,16 @@
   .scan p { margin-top: 2mm; font-size: 9.5pt; }
   .scan .url { margin-top: 2mm; font-size: 7.5pt; color: var(--muted); word-break: break-all; }
 
-  /* Gammelt tv: filmkorn og scanlinjer over alt, farveforskydning på den store skrift */
+  /* Slidt skattekort: filmkorn, ridser, folder, pletter og slidte kanter over alt */
   .page { position: relative; }
-  .tvlag { position: absolute; inset: 0; pointer-events: none; z-index: 5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='1.4' fill='%23000' fill-opacity='.38'/%3E%3C/svg%3E"); background-size: 240px, 1.1mm 1.1mm; }
-  .tvlag { mix-blend-mode: overlay; opacity: .5; }
+  .slid { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-size: 100% 100%; background-repeat: no-repeat; }
+  .slid.korn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; background-repeat: repeat; mix-blend-mode: overlay; opacity: .45; }
+  .slid.lys { background-image: url(../img/slid-lys-a.svg); mix-blend-mode: screen; opacity: .9; }
+  .slid.mork { background-image: url(../img/slid-mork-a.svg); mix-blend-mode: multiply; }
+  .slid.b.lys { background-image: url(../img/slid-lys-b.svg); }
+  .slid.b.mork { background-image: url(../img/slid-mork-b.svg); }
   .qr { position: relative; z-index: 6; }
-  .display, .seal span { text-shadow: -.03em 0 rgba(255, 30, 70, .55), .03em 0 rgba(0, 210, 255, .45); }
-  .revne { position: absolute; inset: 0; background: url(../img/huen-1938.jpg) 70% 18% / cover; filter: grayscale(1) contrast(1.9) brightness(.95);
-    clip-path: inset(34% 0 58% 0); transform: translateX(4mm); }
-  .revne.r2 { clip-path: inset(71% 0 26% 0); transform: translateX(-2.5mm); filter: grayscale(1) contrast(1.4) brightness(.7); }
+  img { filter: grayscale(1) sepia(.5) contrast(1.45) brightness(.8) !important; }
 </style>
 </head>
 <body>
@@ -110,7 +110,7 @@
 <section class="page">
   <div class="panel left">
     <div class="dear"><span>Kære</span><span class="line"></span></div>
-    <figure><img src="../img/huen-1938.jpg" alt=""><span class="revne" aria-hidden="true"></span><span class="revne r2" aria-hidden="true"></span></figure>
+    <figure><img src="../img/huen-1938.jpg" alt=""></figure>
     <div>
       <p class="display name">Sam &amp; Tristan</p>
       <p class="sub">er blevet studenter og inviterer dig til studentergilde.</p>
@@ -151,9 +151,11 @@
 </script>
 
 <script>
-  // Lægger et lag filmkorn og scanlinjer over hver side, kort og billet
-  document.querySelectorAll('.page').forEach((el) => {
-    const lag = document.createElement('i'); lag.className = 'tvlag'; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
+  // Lægger korn, ridser, folder og pletter over hver side, kort og billet
+  document.querySelectorAll('.page').forEach((el, i) => {
+    for (const k of ['korn', 'lys', 'mork']) {
+      const lag = document.createElement('i'); lag.className = 'slid ' + k + ''; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
+    }
   });
 </script>
 </body>
