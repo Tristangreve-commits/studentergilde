@@ -4,6 +4,7 @@ Invitationssiden, brevet og guldbilletterne.
 
 - `index.html`, `style.css`, `app.js`: siden, som QR-koden peger på
 - `print/brev.pdf`: invitationen, klar til print
+- `print/foldeguide.pdf`: sådan printer og folder I invitationen
 - `print/guldbilletter.pdf`: de tre guldbilletter (ligger kun lokalt, se HEMMELIGT.md)
 
 ## Læg siden op på GitHub Pages

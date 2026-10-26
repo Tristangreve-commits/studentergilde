@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Sådan printer og folder I invitationen</title>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<style>
+  /* Guiden er lys, så den ikke bruger al det sorte blæk. */
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #777; font: 400 10.5pt/1.5 "General Sans", sans-serif; color: #0f0d0c; }
+  .page { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; padding: 16mm 16mm 14mm; display: grid; grid-template-rows: auto 1fr; gap: 8mm; }
+  @media print { body { background: none; } .page { margin: 0; } }
+  h1 { font: 800 26pt/1 "Zodiak", serif; letter-spacing: -.03em; }
+  .lead { margin-top: 3mm; color: #4a443c; max-width: 150mm; }
+  .steps { display: grid; grid-template-rows: repeat(5, auto); gap: 7mm; align-content: start; }
+  .step { display: grid; grid-template-columns: 70mm 1fr; gap: 9mm; align-items: center; }
+  .step h2 { font: 800 15pt/1.1 "Zodiak", serif; color: #3a1016; margin-bottom: 2mm; }
+  .step ul { padding-left: 4.5mm; }
+  .step li { margin-bottom: 1mm; }
+  svg { width: 70mm; height: auto; display: block; }
+  .ok { color: #3a1016; font-weight: 500; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header>
+    <h1>Sådan printer og folder I invitationen</h1>
+    <p class="lead">Invitationen er ét A4-ark, der foldes én gang på midten til et kort. Det passer i en almindelig C5-konvolut (162 x 229 mm). Print og fold ét ark først, og tjek det, før I printer resten.</p>
+  </header>
+
+  <div class="steps">
+    <div class="step">
+      <svg viewBox="0 0 280 150" aria-hidden="true">
+        <rect x="20" y="15" width="240" height="120" fill="#1d1a17"/>
+        <rect x="20" y="15" width="240" height="120" fill="none" stroke="#0f0d0c" stroke-width="2"/>
+        <line x1="140" y1="15" x2="140" y2="135" stroke="#d6b25e" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="80" y="80" fill="#e7e4de" font-family="General Sans" font-size="13" text-anchor="middle">Side 1</text>
+        <text x="200" y="80" fill="#e7e4de" font-family="General Sans" font-size="13" text-anchor="middle">og side 2 bagpå</text>
+      </svg>
+      <div>
+        <h2>Print</h2>
+        <ul>
+          <li>Åbn <b>brev.pdf</b>, og vælg <b>A4</b>, <b>liggende</b> og <b>faktisk størrelse</b> (100 %, ikke "tilpas til side").</li>
+          <li>Vælg <b>dobbeltsidet</b>, og <b>vend på den korte kant</b>.</li>
+          <li>Tykt papir på 200 til 250 g føles flottest. Hos et trykkeri bliver det sorte også helt ud til kanten.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <svg viewBox="0 0 280 150" aria-hidden="true">
+        <rect x="20" y="15" width="240" height="120" fill="#1d1a17"/>
+        <rect x="32" y="30" width="96" height="70" fill="#8a847a"/>
+        <text x="80" y="118" fill="#e7e4de" font-family="Zodiak" font-weight="800" font-size="12" text-anchor="middle">SAM &amp; TRISTAN</text>
+        <text x="200" y="45" fill="#d6b25e" font-family="Zodiak" font-weight="800" font-size="11" text-anchor="middle">6. juli 2027</text>
+        <rect x="160" y="88" width="30" height="30" fill="#e7e4de"/>
+        <line x1="140" y1="15" x2="140" y2="135" stroke="#d6b25e" stroke-width="2" stroke-dasharray="6 5"/>
+      </svg>
+      <div>
+        <h2>Tjek arket</h2>
+        <ul>
+          <li>På den ene side: billedet til venstre, dato og QR-kode til højre.</li>
+          <li>Vend arket om. Lige bag billedet skal guldseglet med <b>S&amp;T</b> sidde, og det skal vende samme vej som teksten.</li>
+          <li class="ok">Sidder seglet bag datoen eller på hovedet, så print igen med "vend på den lange kant".</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <svg viewBox="0 0 280 165" aria-hidden="true">
+        <rect x="140" y="15" width="120" height="120" fill="#1d1a17"/>
+        <rect x="160" y="88" width="30" height="30" fill="#e7e4de"/>
+        <path d="M140 15 L60 25 L60 125 L140 135 Z" fill="#2c2824"/>
+        <circle cx="95" cy="70" r="16" fill="#d6b25e"/>
+        <path d="M70 140 Q 140 165 205 140" fill="none" stroke="#3a1016" stroke-width="3"/>
+        <path d="M205 140 l-12 -3 m12 3 l-6 10" fill="none" stroke="#3a1016" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <h2>Fold</h2>
+        <ul>
+          <li>Læg arket med billedet og datoen opad.</li>
+          <li>Fold den venstre halvdel med billedet over på den højre. Brug de små streger øverst og nederst på midten som sigte.</li>
+          <li>Pres folden skarp med en neglekant eller en lineal. Nu ligger guldseglet øverst som forside.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <svg viewBox="0 0 280 150" aria-hidden="true">
+        <rect x="80" y="10" width="120" height="130" fill="#1d1a17"/>
+        <circle cx="140" cy="48" r="20" fill="#d6b25e"/>
+        <text x="140" y="53" fill="#0f0d0c" font-family="Zodiak" font-weight="800" font-size="13" text-anchor="middle">S&amp;T</text>
+        <line x1="95" y1="118" x2="185" y2="118" stroke="#d6b25e" stroke-width="1.5"/>
+        <text x="100" y="114" fill="#e7e4de" font-family="General Sans" font-size="11" font-style="italic">Anna Jensen</text>
+      </svg>
+      <div>
+        <h2>Skriv navne</h2>
+        <ul>
+          <li>Skriv gæstens navn på forsiden under "Invitation til".</li>
+          <li>Skriv navnet igen indeni efter "Kære".</li>
+          <li>En guld- eller sølvpen ser bedst ud på det sorte.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <svg viewBox="0 0 280 150" aria-hidden="true">
+        <rect x="40" y="30" width="200" height="110" fill="#e9e5dc" stroke="#0f0d0c" stroke-width="2"/>
+        <rect x="70" y="8" width="85" height="100" fill="#1d1a17"/>
+        <rect x="165" y="22" width="55" height="26" fill="#d6b25e"/>
+        <rect x="160" y="55" width="36" height="50" fill="#3a1016"/>
+        <path d="M40 30 L140 85 L240 30" fill="none" stroke="#0f0d0c" stroke-width="2"/>
+      </svg>
+      <div>
+        <h2>I konvolutten</h2>
+        <ul>
+          <li>Kortet i en C5-konvolut, med forsiden vendt mod åbningen.</li>
+          <li>Middagsgæster får også et middagskort med i konvolutten.</li>
+          <li>Tre tilfældige konvolutter får en guldbillet. Skriv i planlægningsarket, hvem der fik hvilken.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -7,9 +7,10 @@
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
-  /* A4, foldes i tre til en lang konvolut (C65/DL, 110 x 220 mm).
-     Side 1 er ydersiden, side 2 er indersiden. Print dobbeltsidet, vend på den lange kant. */
-  @page { size: A4; margin: 0; }
+  /* Et A4-ark på tværs, foldet én gang på midten til et kort i A5 (148 x 210 mm).
+     Passer i en almindelig C5-konvolut (162 x 229 mm).
+     Side 1 er ydersiden, side 2 er indersiden. Print dobbeltsidet og vend på den korte kant. */
+  @page { size: A4 landscape; margin: 0; }
   :root {
     --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
@@ -18,126 +19,93 @@
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body { background: #777; font: 400 10.5pt/1.45 "General Sans", sans-serif; color: var(--ink); }
   .page {
-    width: 210mm; height: 297mm; margin: 10mm auto; overflow: hidden; position: relative;
+    width: 297mm; height: 210mm; margin: 10mm auto; overflow: hidden; position: relative;
     background: var(--bg) var(--grain); background-size: 300px;
-    display: grid; grid-template-rows: 99mm 99mm 99mm;
+    display: grid; grid-template-columns: 148.5mm 148.5mm;
     page-break-after: always; break-after: page;
   }
   @media print { body { background: none; } .page { margin: 0; } }
-  .panel { position: relative; padding: 12mm 14mm; overflow: hidden; }
-  .flip { transform: rotate(180deg); }
-  .display { font-family: "Zodiak", serif; font-weight: 800; letter-spacing: -.02em; line-height: .95; }
+  .panel { position: relative; padding: 14mm 13mm; overflow: hidden; display: grid; }
+  .display { font-family: "Zodiak", serif; font-weight: 800; letter-spacing: -.03em; line-height: .9; }
   .gold { color: var(--gold); }
-  .muted { color: var(--muted); }
 
-  /* små foldemærker i kanten */
-  .page::before, .page::after {
-    content: ""; position: absolute; left: 0; width: 4mm; height: .3mm; background: var(--muted); opacity: .6;
-  }
-  .page::before { top: 99mm; }
-  .page::after { top: 198mm; }
-  .tick-r { position: absolute; right: 0; width: 4mm; height: .3mm; background: var(--muted); opacity: .6; }
+  /* små foldemærker øverst og nederst på midten */
+  .page::before, .page::after { content: ""; position: absolute; left: calc(50% - .15mm); width: .3mm; height: 5mm; background: var(--muted); opacity: .7; }
+  .page::before { top: 0; }
+  .page::after { bottom: 0; }
 
   /* ---------- Yderside ---------- */
-  .cover { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 10mm; }
+  .back { place-items: center; text-align: center; align-content: center; gap: 4mm; }
+  .back .display { font-size: 20pt; text-transform: uppercase; }
+  .back p:last-child { color: var(--muted); font-size: 9.5pt; }
+
+  .front { grid-template-rows: 1fr auto auto; justify-items: center; text-align: center; }
   .seal {
-    width: 46mm; height: 46mm; border-radius: 50%;
+    width: 52mm; height: 52mm; border-radius: 50%; align-self: center;
     background: var(--gold) var(--grain); color: var(--bg);
-    display: grid; place-items: center; justify-self: center;
+    display: grid; place-items: center;
   }
-  .seal span { font: 800 14mm/1 "Zodiak", serif; letter-spacing: -.04em; margin-top: -2mm; }
-  .to p { font-size: 11pt; }
-  .to .line { height: 13mm; border-bottom: .35mm solid var(--gold); margin: 1mm 0 7mm; }
-  .to .line.short { width: 28mm; }
-  .to .label { color: var(--muted); }
-
-  .back { display: grid; place-items: center; text-align: center; }
-  .back .display { font-size: 22pt; }
-  .back p + p { margin-top: 4mm; color: var(--muted); font-size: 9.5pt; }
-
-  .tease { display: grid; grid-template-columns: 62mm 1fr; gap: 12mm; align-items: center; padding-top: 10mm; padding-bottom: 10mm; }
-  .tease figure { height: 77mm; overflow: hidden; position: relative; }
-  .tease figure img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 15%; filter: grayscale(1) contrast(1.6) brightness(.8); }
-  .tease figure::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 240px, 140px; mix-blend-mode: overlay; }
-  .tease .display { font-size: 34pt; }
-  .tease p:last-child { margin-top: 6mm; color: var(--gold); font-size: 11pt; }
+  .seal span { font: 800 16mm/1 "Zodiak", serif; letter-spacing: -.04em; margin-top: -2mm; }
+  .front .display { font-size: 11.5mm; text-transform: uppercase; margin-bottom: 12mm; }
+  .to { width: 100%; text-align: left; }
+  .to p { color: var(--muted); font-size: 10pt; }
+  .to .line { height: 14mm; border-bottom: .4mm solid var(--gold); }
 
   /* ---------- Inderside ---------- */
-  .a { display: grid; grid-template-rows: auto 1fr auto; }
-  .a-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .left { grid-template-rows: auto 1fr auto; gap: 8mm; }
   .dear { display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; }
-  .dear .line { width: 70mm; border-bottom: .35mm solid var(--gold); height: 9mm; }
-  .mono { font: 800 16pt/1 "Zodiak", serif; }
-  .name { text-transform: uppercase; font-size: 21.5mm; line-height: .82; letter-spacing: -.04em; white-space: nowrap; margin-left: -1mm; align-self: end; }
-  .a-sub { margin-top: 4mm; font-size: 12pt; }
+  .dear .line { flex: 1; border-bottom: .4mm solid var(--gold); height: 9mm; }
+  .left figure { position: relative; overflow: hidden; min-height: 0; }
+  .left figure img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 18%; filter: grayscale(1) contrast(1.6) brightness(.8); }
+  .left figure::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 240px, 140px; mix-blend-mode: overlay; }
+  .name { font-size: 12.6mm; text-transform: uppercase; letter-spacing: -.04em; white-space: nowrap; }
+  .sub { margin-top: 3mm; font-size: 11.5pt; }
 
-  .b { display: grid; grid-template-columns: 1fr 1fr; gap: 12mm; align-items: start; }
-  .b .when { font-size: 21pt; }
-  .b .facts { margin-top: 5mm; display: grid; gap: 1mm; font-size: 11.5pt; }
-  .prog { display: grid; gap: 4mm; }
-  .prog h2 { font: 800 15pt/1 "Zodiak", serif; color: var(--gold); margin-bottom: 1mm; }
-  .prog .row { display: flex; justify-content: space-between; gap: 6mm; font-size: 11pt; padding: 2.2mm 3mm; background: #1d1a17; }
+  .right { grid-template-rows: auto auto 1fr auto; gap: 7mm; }
+  .when { font-size: 20pt; }
+  .facts { margin-top: 3mm; display: grid; gap: .6mm; font-size: 11pt; }
+  .prog { display: grid; gap: 2.5mm; }
+  .prog h2 { font: 800 14pt/1 "Zodiak", serif; color: var(--gold); margin-bottom: 1mm; }
+  .prog .row { display: flex; justify-content: space-between; gap: 6mm; font-size: 10.5pt; padding: 2.2mm 3mm; background: #1d1a17; }
   .prog .row span:first-child { font-variant-numeric: tabular-nums; color: var(--gold); }
-  .prog p { font-size: 9.5pt; color: var(--muted); margin-top: 2mm; }
-
-  .c { display: grid; grid-template-columns: 46mm 1fr; gap: 12mm; align-items: center; }
-  .qr { width: 46mm; height: 46mm; background: var(--paper); padding: 3mm; display: grid; place-items: center; }
-  .qr svg, .qr img { width: 100%; height: 100%; display: block; }
-  .c .display { font-size: 28pt; }
-  .c p { margin-top: 4mm; max-width: 95mm; }
-  .c .url { margin-top: 4mm; font-size: 8.5pt; color: var(--muted); word-break: break-all; }
+  .prog p { font-size: 9.5pt; color: var(--muted); margin-top: 1.5mm; }
+  .scan { display: grid; grid-template-columns: 40mm 1fr; gap: 6mm; align-items: center; }
+  .qr { width: 40mm; height: 40mm; background: var(--paper); padding: 2.2mm; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .scan .display { font-size: 17pt; }
+  .scan p { margin-top: 2mm; font-size: 9.5pt; }
+  .scan .url { margin-top: 2mm; font-size: 7.5pt; color: var(--muted); word-break: break-all; }
 </style>
 </head>
 <body>
 
-<!-- SIDE 1: YDERSIDE -->
+<!-- SIDE 1: YDERSIDE. Venstre halvdel bliver bagsiden, højre halvdel bliver forsiden. -->
 <section class="page">
-  <i class="tick-r" style="top:99mm"></i><i class="tick-r" style="top:198mm"></i>
-
-  <!-- Forsiden, når brevet er foldet (står på hovedet her, så den vender rigtigt efter foldning) -->
-  <div class="panel cover flip">
-    <div class="seal"><span>S&amp;T</span></div>
-    <div class="to">
-      <p class="label">Invitation til</p>
-      <div class="line"></div>
-    </div>
-  </div>
-
-  <!-- Bagsiden af det foldede brev -->
   <div class="panel back">
-    <div>
-      <p class="display">Sam &amp; Tristan</p>
-      <p>Studentergilde, sommeren 2027</p>
-    </div>
+    <p class="display">Sam &amp; Tristan</p>
+    <p>Studentergilde, sommeren 2027</p>
   </div>
-
-  <!-- Det første man ser, når forsiden løftes -->
-  <div class="panel tease flip">
-    <figure><img src="../img/huen-1938.jpg" alt=""></figure>
-    <div>
-      <p class="display">Du er inviteret.</p>
-      <p>Fold ud</p>
+  <div class="panel front">
+    <div class="seal"><span>S&amp;T</span></div>
+    <p class="display">Studentergilde</p>
+    <div class="to">
+      <p>Invitation til</p>
+      <div class="line"></div>
     </div>
   </div>
 </section>
 
-<!-- SIDE 2: INDERSIDE -->
+<!-- SIDE 2: INDERSIDE. Det man ser, når kortet åbnes. -->
 <section class="page">
-  <i class="tick-r" style="top:99mm"></i><i class="tick-r" style="top:198mm"></i>
-
-  <div class="panel a">
-    <div class="a-top">
-      <div class="dear"><span>Kære</span><span class="line"></span></div>
-      <span class="mono gold">S&amp;T</span>
-    </div>
-    <div></div>
+  <div class="panel left">
+    <div class="dear"><span>Kære</span><span class="line"></span></div>
+    <figure><img src="../img/huen-1938.jpg" alt=""></figure>
     <div>
       <p class="display name">Sam &amp; Tristan</p>
-      <p class="a-sub">er blevet studenter og inviterer dig til studentergilde.</p>
+      <p class="sub">er blevet studenter og inviterer dig til studentergilde.</p>
     </div>
   </div>
-
-  <div class="panel b">
+  <div class="panel right">
     <div>
       <p class="display when gold">Tirsdag 6. juli 2027</p>
       <div class="facts">
@@ -150,16 +118,16 @@
       <h2>Aftenen</h2>
       <div class="row"><span>21.00</span><span>Drinks, spil og hygge</span></div>
       <div class="row"><span>23.00</span><span>DJ set til sent</span></div>
-      <p>Tre af brevene har en guldbillet. Ligger der en i dit, har du vundet en flaske.</p>
+      <p>Tre af invitationerne har en guldbillet. Ligger der en i din, har du vundet en fed præmie.</p>
     </div>
-  </div>
-
-  <div class="panel c">
-    <div class="qr" id="qr"></div>
-    <div>
-      <p class="display">Scan og tilmeld dig</p>
-      <p>Svar senest 1. juli 2027. Har du en guldbillet, så skriv koden på siden, og tag billetten med på aftenen.</p>
-      <p class="url" id="url"></p>
+    <div></div>
+    <div class="scan">
+      <div class="qr" id="qr"></div>
+      <div>
+        <p class="display">Scan og tilmeld dig</p>
+        <p>Svar senest 1. juli 2027. Har du en guldbillet, så skriv koden på siden, og tag billetten med.</p>
+        <p class="url" id="url"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -169,16 +137,6 @@
   const qr = qrcode(0, 'M'); qr.addData(URL_TIL_SIDEN); qr.make();
   document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
   document.getElementById('url').textContent = URL_TIL_SIDEN.replace('https://', '');
-</script>
-
-<script>
-  // Store navne fylder præcis bredden
-  document.fonts.ready.then(() => document.querySelectorAll('[data-fit]').forEach((el) => {
-    const w = parseFloat(el.dataset.fit) || el.parentElement.clientWidth;
-    el.style.display = 'inline-block'; el.style.whiteSpace = 'nowrap';
-    const fs = parseFloat(getComputedStyle(el).fontSize);
-    el.style.fontSize = fs * w / el.scrollWidth + 'px';
-  }));
 </script>
 </body>
 </html>
