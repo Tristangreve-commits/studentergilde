@@ -15,7 +15,7 @@
   body { width: 1920px; height: 1005px; overflow: hidden; background: var(--bg) var(--grain); color: var(--ink); font-family: "General Sans", sans-serif; position: relative; }
   .photo { position: absolute; left: 50%; top: 150px; width: 380px; height: 380px; transform: translateX(-50%); overflow: hidden; }
   .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 68% 14%; filter: grayscale(1) contrast(1.5) brightness(.55); }
-  .photo::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 240px, 140px; mix-blend-mode: overlay; }
+  .photo::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 120px, 70px; mix-blend-mode: overlay; }
   .rough { filter: url(#blaek); }
   .line { text-transform: uppercase; position: absolute; top: 340px; left: 50%; transform: translate(-50%, -52%); white-space: nowrap; font: 800 280px/1 "Zodiak", serif; letter-spacing: -.035em; }
   .line i { display: inline-block; width: 50px; height: 50px; border-radius: 50%; background: currentColor; margin: 0 70px; vertical-align: middle; }
@@ -28,7 +28,7 @@
 
   /* Filmkorn over alt */
   body { position: relative; }
-  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; mix-blend-mode: overlay; opacity: .5; }
+  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 120px; mix-blend-mode: overlay; opacity: .5; }
   .qr { position: relative; z-index: 6; }
   /* Slidt fotokopi som en lille detalje oven på kornet */
   .kopi { position: absolute; inset: 0; pointer-events: none; z-index: 5; background: url(../img/kopi-a.svg) center / cover no-repeat; mix-blend-mode: difference; opacity: .22; }

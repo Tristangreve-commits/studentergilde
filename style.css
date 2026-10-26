@@ -415,7 +415,7 @@ figure::after { display: none; }
 body::after {
   content: ""; position: fixed; z-index: 100; pointer-events: none;
   inset: -50%; width: 200%; height: 200%;
-  background-image: var(--film); background-size: 240px;
+  background-image: var(--film); background-size: 120px;
   opacity: .22; mix-blend-mode: hard-light;
   animation: korn 1s steps(8) infinite;
   will-change: transform;

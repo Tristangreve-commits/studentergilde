@@ -22,7 +22,7 @@
   /* Kortet står på højkant: 105 x 148,5 mm, og passer i den lange konvolut */
   .card {
     position: relative; overflow: hidden;
-    background: var(--wine) var(--grain); background-size: 300px;
+    background: var(--wine) var(--grain); background-size: 150px;
     padding: 9mm 8mm 8mm;
     display: grid; grid-template-rows: auto auto 1fr auto;
     outline: .2mm solid #fff;
@@ -43,7 +43,7 @@
 
   /* Filmkorn over alt */
   .card { position: relative; }
-  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; mix-blend-mode: overlay; opacity: .5; }
+  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 120px; mix-blend-mode: overlay; opacity: .5; }
   .qr { position: relative; z-index: 6; }
   /* Slidt fotokopi som en lille detalje oven på kornet */
   .kopi { position: absolute; inset: 0; pointer-events: none; z-index: 5; background: url(../img/kopi-a.svg) center / cover no-repeat; mix-blend-mode: difference; opacity: .62; }
