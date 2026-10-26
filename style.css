@@ -432,3 +432,13 @@ body::after {
   100% { transform: translate(0, 0); }
 }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
+
+/* ---------- Slidt fotokopi: svag gennemslagstekst, tynde folder og tonerprikker ----------
+   Teksturen laves af tools/kopi.py. Slet denne blok for kun at have filmkornet. */
+.hero, main > section, .foot { position: relative; }
+.hero::before, main > section::before, .foot::before {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: url(img/kopi-a.svg) center / cover no-repeat;
+  mix-blend-mode: difference; opacity: .2;
+}
+main > section:nth-child(even)::before { background-image: url(img/kopi-b.svg); }

@@ -30,6 +30,9 @@
   body { position: relative; }
   .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; mix-blend-mode: overlay; opacity: .5; }
   .qr { position: relative; z-index: 6; }
+  /* Slidt fotokopi som en lille detalje oven på kornet */
+  .kopi { position: absolute; inset: 0; pointer-events: none; z-index: 5; background: url(../img/kopi-a.svg) center / cover no-repeat; mix-blend-mode: difference; opacity: .22; }
+  .kopi.b { background-image: url(../img/kopi-b.svg); }
 </style>
 </head>
 <body>
@@ -61,6 +64,9 @@
   // Lægger et lag filmkorn over hver side, kort og billet, også over tekst og billeder
   document.querySelectorAll('body').forEach((el) => {
     const lag = document.createElement('i'); lag.className = 'korn'; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
+  });
+  document.querySelectorAll('body').forEach((el, i) => {
+    const kopi = document.createElement('i'); kopi.className = 'kopi' + (i % 2 ? ' b' : ''); kopi.setAttribute('aria-hidden', 'true'); el.appendChild(kopi);
   });
 </script>
 </body>
