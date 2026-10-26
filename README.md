@@ -21,7 +21,7 @@ Tilmeld-knappen på siden sender gæsterne til Facebook-begivenheden (https://fb
 
 ## Ret dato, adresse og tekst
 
-Dato, tid og adresse står direkte i `index.html` og `print/brev.html`. Søg efter "15. juli" og "Gyntelsbjerg" og ret alle steder.
+Dato, tid og adresse står direkte i `index.html` og `print/brev.html`. Søg efter "6. juli" og "Standgårdsparken" og ret alle steder.
 
 ## Print1
 
