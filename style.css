@@ -432,3 +432,42 @@ body::after {
   100% { transform: translate(0, 0); }
 }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
+
+/* ---------- Gammelt tv: scanlinjer, farveforskydning og glitch ----------
+   Slet denne blok og <div class="tv"> i HTML'en for at fjerne effekten. */
+:root {
+  --scan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='1.4' fill='%23000' fill-opacity='.38'/%3E%3C/svg%3E");
+  --rgb: -.03em 0 rgba(255, 30, 70, .5), .03em 0 rgba(0, 210, 255, .4);
+}
+.tv { position: fixed; inset: 0; z-index: 101; pointer-events: none; background-image: var(--scan); background-size: 4px 4px; opacity: .55; }
+.tv::after {
+  content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 14%;
+  background: rgba(231, 228, 222, .05);
+  animation: rul 9s linear infinite;
+}
+@keyframes rul { to { transform: translateY(820%); } }
+
+.rough, .line, .bigword { text-shadow: var(--rgb); } /* taste-skill-ignore: farveforskydning som på gammelt tv, efter ønske */
+.line { text-shadow: -.025em 0 rgba(255, 30, 70, .5), .025em 0 rgba(0, 210, 255, .4); } /* taste-skill-ignore: farveforskydning som på gammelt tv, efter ønske */
+.rough { animation: glitch 7s steps(1) infinite; }
+.giant.rough { animation-delay: -2.3s; }
+.h-big.rough { animation-delay: -4.1s; }
+.wordmark.rough { animation-delay: -5.6s; }
+@keyframes glitch {
+  0%, 91%, 100% { transform: none; text-shadow: var(--rgb); clip-path: none; } /* taste-skill-ignore: farveforskydning som på gammelt tv, efter ønske */
+  92% { transform: translateX(.06em) skewX(-6deg); text-shadow: -.1em 0 rgba(255, 30, 70, .75), .1em 0 rgba(0, 210, 255, .65); } /* taste-skill-ignore: farveforskydning som på gammelt tv, efter ønske */
+  93% { transform: translateX(-.05em); clip-path: inset(18% 0 52% 0); }
+  94% { transform: translateX(.03em); clip-path: inset(60% 0 8% 0); text-shadow: .14em 0 rgba(255, 30, 70, .7), -.08em 0 rgba(0, 210, 255, .6); } /* taste-skill-ignore: farveforskydning som på gammelt tv, efter ønske */
+  95% { transform: none; clip-path: none; }
+}
+figure img, figure video { animation: billedglitch 6s steps(1) infinite; }
+.side-r img, .faq-photo img { animation-delay: -2.7s; }
+.guld-photo video { animation-delay: -4.4s; }
+@keyframes billedglitch {
+  0%, 94%, 100% { transform: none; }
+  95% { transform: translateX(-2.5%) skewX(3deg); filter: grayscale(1) contrast(2) brightness(1.1); }
+  96% { transform: translateX(1.5%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rough, figure img, figure video, .tv::after { animation: none; }
+}

@@ -25,6 +25,14 @@
   .facts p { font-size: 26px; color: #a39d92; }
   .facts p + p { margin-top: 8px; font-size: 34px; color: var(--gold); }
   .mono { position: absolute; top: 56px; left: 0; right: 0; text-align: center; font: 800 44px/1 "Zodiak", serif; }
+
+  /* Gammelt tv: filmkorn og scanlinjer over alt, farveforskydning på den store skrift */
+  body { position: relative; }
+  .tvlag { position: absolute; inset: 0; pointer-events: none; z-index: 5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='1.4' fill='%23000' fill-opacity='.38'/%3E%3C/svg%3E"); background-size: 240px, 1.1mm 1.1mm; }
+  .tvlag { mix-blend-mode: overlay; opacity: .5; }
+  .qr { position: relative; z-index: 6; }
+  .line, .title, .mono { text-shadow: -.03em 0 rgba(255, 30, 70, .55), .03em 0 rgba(0, 210, 255, .45); }
 </style>
 </head>
 <body>
@@ -50,6 +58,13 @@
     const fs = parseFloat(getComputedStyle(el).fontSize);
     el.style.fontSize = fs * w / el.scrollWidth + 'px';
   }));
+</script>
+
+<script>
+  // Lægger et lag filmkorn og scanlinjer over hver side, kort og billet
+  document.querySelectorAll('body').forEach((el) => {
+    const lag = document.createElement('i'); lag.className = 'tvlag'; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
+  });
 </script>
 </body>
 </html>
