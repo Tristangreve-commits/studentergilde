@@ -8,7 +8,7 @@
 <style>
   /* Coverbillede til Facebook-begivenheden, 1920 x 1005 px */
   :root {
-    --bg: #120e0a; --ink: #e7e4de; --gold: #d6b25e;
+    --bg: #0f0d0c; --ink: #e7e4de; --gold: #d6b25e;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,16 +26,10 @@
   .facts p + p { margin-top: 8px; font-size: 34px; color: var(--gold); }
   .mono { position: absolute; top: 56px; left: 0; right: 0; text-align: center; font: 800 44px/1 "Zodiak", serif; }
 
-  /* Slidt skattekort: filmkorn, ridser, folder, pletter og slidte kanter over alt */
+  /* Filmkorn over alt */
   body { position: relative; }
-  .slid { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-size: 100% 100%; background-repeat: no-repeat; }
-  .slid.korn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; background-repeat: repeat; mix-blend-mode: overlay; opacity: .45; }
-  .slid.lys { background-image: url(../img/slid-lys-a.svg); mix-blend-mode: screen; opacity: .9; }
-  .slid.mork { background-image: url(../img/slid-mork-a.svg); mix-blend-mode: multiply; }
-  .slid.b.lys { background-image: url(../img/slid-lys-b.svg); }
-  .slid.b.mork { background-image: url(../img/slid-mork-b.svg); }
+  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 240px; mix-blend-mode: overlay; opacity: .5; }
   .qr { position: relative; z-index: 6; }
-  img { filter: grayscale(1) sepia(.5) contrast(1.45) brightness(.8) !important; }
 </style>
 </head>
 <body>
@@ -64,11 +58,9 @@
 </script>
 
 <script>
-  // Lægger korn, ridser, folder og pletter over hver side, kort og billet
-  document.querySelectorAll('body').forEach((el, i) => {
-    for (const k of ['korn', 'lys', 'mork']) {
-      const lag = document.createElement('i'); lag.className = 'slid ' + k + (i % 2 ? ' b' : ''); lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
-    }
+  // Lægger et lag filmkorn over hver side, kort og billet, også over tekst og billeder
+  document.querySelectorAll('body').forEach((el) => {
+    const lag = document.createElement('i'); lag.className = 'korn'; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
   });
 </script>
 </body>

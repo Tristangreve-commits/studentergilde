@@ -432,19 +432,3 @@ body::after {
   100% { transform: translate(0, 0); }
 }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
-
-/* ---------- Slidt skattekort: ridser, folder, pletter og slidte kanter ----------
-   Teksturerne laves af tools/slid.py. Slet denne blok for at fjerne looket. */
-:root { --bg: #120e0a; --surface: #1f1914; }
-.hero, main > section, .foot { position: relative; }
-.hero::before, main > section::before, .foot::before,
-.hero::after, main > section::after, .foot::after {
-  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  background-size: 100% 100%; background-repeat: no-repeat;
-}
-.hero::before, main > section::before, .foot::before { background-image: url(img/slid-lys-a.svg); mix-blend-mode: screen; opacity: .9; }
-.hero::after, main > section::after, .foot::after { background-image: url(img/slid-mork-a.svg); mix-blend-mode: multiply; }
-main > section:nth-child(even)::before { background-image: url(img/slid-lys-b.svg); }
-main > section:nth-child(even)::after { background-image: url(img/slid-mork-b.svg); }
-figure img, figure video { filter: grayscale(1) sepia(.5) contrast(1.45) brightness(.8); }
-.hero-photo img { filter: grayscale(1) sepia(.5) contrast(1.4) brightness(.55); }
