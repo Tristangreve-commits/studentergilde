@@ -32,3 +32,9 @@ Dato, tid og adresse står direkte i `index.html` og `print/brev.html`. Søg eft
 - Guldbilletterne ser bedst ud på guld- eller cremefarvet karton.
 
 Billederne er gamle, frie arkivbilleder fra Wikimedia Commons. Krediteringen står nederst på siden.
+
+## Middag og Facebook
+
+- `middag/index.html`: den skjulte side til middagsgæsterne. Den linkes kun fra middagskortet.
+- `print/middagskort.pdf`: fire middagskort pr. A4. Klip ud, og skriv navnet i hånden.
+- `print/facebook-cover.png`: coverbillede til Facebook-begivenheden (1920 x 1005).

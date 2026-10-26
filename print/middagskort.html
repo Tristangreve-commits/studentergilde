@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Middagskort, til print</title>
+<link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* Fire kort på et A4 (A6 liggende, 148 x 105 mm). Klip ud, og læg et i konvolutten sammen med brevet.
+     Print så mange ark, som I har middagsgæster. Navnet skrives i hånden. */
+  @page { size: A4; margin: 0; }
+  :root {
+    --wine: #3a1016; --ink: #e7e4de; --muted: #c2a9ac; --gold: #d6b25e;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #777; font: 400 9pt/1.4 "General Sans", sans-serif; color: var(--ink); }
+  .sheet { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; }
+  @media print { body { background: none; } .sheet { margin: 0; } }
+  /* Kortet står på højkant: 105 x 148,5 mm, og passer i den lange konvolut */
+  .card {
+    position: relative; overflow: hidden;
+    background: var(--wine) var(--grain); background-size: 300px;
+    padding: 9mm 8mm 8mm;
+    display: grid; grid-template-rows: auto auto 1fr auto;
+    outline: .2mm solid #fff;
+  }
+  .top { display: flex; justify-content: space-between; align-items: baseline; color: var(--gold); }
+  .mono { font: 400 13pt/1 "Gambarino", serif; }
+  .top span:last-child { font-size: 8.5pt; }
+  .title { margin-top: 9mm; font: 400 44pt/.86 "Gambarino", serif; letter-spacing: -.035em; }
+  .to { margin-top: 9mm; }
+  .to p { color: var(--muted); font-size: 8.5pt; }
+  .to .line { height: 10mm; border-bottom: .35mm solid var(--gold); }
+  .body { margin-top: 7mm; font-size: 10pt; }
+  .body strong { display: block; font: 400 13pt/1.1 "Gambarino", serif; color: var(--gold); margin-bottom: 2mm; }
+  .bottom { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; align-items: end; }
+  .qr { width: 24mm; height: 24mm; background: var(--ink); padding: 1.6mm; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+  .bottom p { font-size: 8pt; color: var(--muted); }
+</style>
+</head>
+<body>
+<section class="sheet" id="sheet"></section>
+
+<template id="kort">
+  <div class="card">
+    <div class="top"><span class="mono">S&amp;T</span><span>Kun for få</span></div>
+    <p class="title">Den inderste cirkel</p>
+    <div>
+      <div class="to"><p>Til</p><div class="line"></div></div>
+      <div class="body">
+        <strong>Du er også inviteret til middag</strong>
+        <p>Tirsdag 6. juli 2027 kl. 17, før festen åbner for alle. Rød løber, velkomstdrink og middag i flere retter.</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="qr"></div>
+      <p>Scan for middagens program. Giv Sam eller Tristan besked senest 1. juli, om du kommer.</p>
+    </div>
+  </div>
+</template>
+
+<script>
+  const URL_TIL_MIDDAG = 'https://tristangreve-commits.github.io/studentergilde/middag/';
+  const qr = qrcode(0, 'M'); qr.addData(URL_TIL_MIDDAG); qr.make();
+  const svg = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  const sheet = document.getElementById('sheet'), tpl = document.getElementById('kort');
+  for (let i = 0; i < 4; i++) {
+    const c = tpl.content.cloneNode(true);
+    c.querySelector('.qr').innerHTML = svg;
+    sheet.appendChild(c);
+  }
+</script>
+</body>
+</html>

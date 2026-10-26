@@ -8,7 +8,7 @@ const PRIZES = {
 // Guldbillet
 const codeForm = document.getElementById('kode-form');
 const codeOut = document.getElementById('kode-svar');
-codeForm.addEventListener('submit', async (e) => {
+if (codeForm) codeForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   let code = codeForm.kode.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
   if (!code.startsWith('GULD')) code = 'GULD' + code;
