@@ -28,7 +28,7 @@ Hedder repoet eller brugeren noget andet, så ret `URL_TIL_SIDEN` i `print/brev.
 
 Dato, tid og adresse står direkte i `index.html` og `print/brev.html`. Søg efter "15. juli" og "Gyntelsbjerg" og ret alle steder.
 
-## Print
+## Print1
 
 - Brevet er A4, printet dobbeltsidet (vend på den lange kant) og foldet i tre, så det passer i en lang konvolut (C65/DL, 110 x 220 mm). De små streger i kanten viser, hvor der skal foldes.
 - Fold den nederste tredjedel op først, og så den øverste ned over. Så vender forsiden med seglet udad.
