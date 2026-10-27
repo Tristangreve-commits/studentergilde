@@ -30,11 +30,13 @@
   .top { display: flex; justify-content: space-between; align-items: baseline; color: var(--gold); }
   .mono { font: 800 13pt/1 "Zodiak", serif; }
   .top span:last-child { font-size: 8.5pt; }
-  .title { margin-top: 9mm; font: 800 44pt/.86 "Zodiak", serif; letter-spacing: -.035em; }
-  .to { margin-top: 9mm; }
-  .to p { color: var(--muted); font-size: 8.5pt; }
-  .to .line { height: 10mm; border-bottom: .35mm solid var(--gold); }
-  .body { margin-top: 7mm; font-size: 10pt; }
+  .title { margin-top: 7mm; font: 800 40pt/.86 "Zodiak", serif; letter-spacing: -.035em; }
+  /* Lyst navnefelt til en almindelig sort kuglepen */
+  .to { margin-top: 7mm; position: relative; z-index: 6; background: #f4f1ea; color: #0f0d0c; padding: 3.5mm 5mm 4.5mm; box-shadow: inset 0 0 0 .4mm var(--gold); }
+  .to::before { content: ""; position: absolute; inset: 0; background: var(--grain); background-size: 150px; opacity: .45; pointer-events: none; }
+  .to p { font: 800 7.5pt/1 "Zodiak", serif; letter-spacing: .2em; text-transform: uppercase; color: var(--wine); }
+  .to .line { height: 15mm; border-bottom: .35mm solid #0f0d0c; }
+  .body { margin-top: 5mm; font-size: 10pt; }
   .body strong { display: block; font: 800 13pt/1.1 "Zodiak", serif; color: var(--gold); margin-bottom: 2mm; }
   .bottom { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; align-items: end; }
   .qr { width: 24mm; height: 24mm; background: var(--ink); padding: 1.6mm; }

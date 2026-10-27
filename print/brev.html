@@ -12,7 +12,7 @@
      Side 1 er ydersiden, side 2 er indersiden. Print dobbeltsidet og vend på den korte kant. */
   @page { size: A4 landscape; margin: 0; }
   :root {
-    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de;
+    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e; --paper: #e7e4de; --paper-light: #f4f1ea; --wine: #3a1016;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,22 +39,31 @@
   .back .display { font-size: 20pt; text-transform: uppercase; }
   .back p:last-child { color: var(--muted); font-size: 9.5pt; }
 
-  .front { grid-template-rows: 1fr auto auto; justify-items: center; text-align: center; }
+  .front { grid-template-rows: auto auto 1fr; justify-items: center; text-align: center; }
   .seal {
-    width: 52mm; height: 52mm; border-radius: 50%; align-self: center;
+    width: 30mm; height: 30mm; border-radius: 50%;
     background: var(--gold) var(--grain); color: var(--bg);
     display: grid; place-items: center;
   }
-  .seal span { font: 800 16mm/1 "Zodiak", serif; letter-spacing: -.04em; margin-top: -2mm; }
-  .front .display { font-size: 11.5mm; text-transform: uppercase; margin-bottom: 12mm; }
-  .to { width: 100%; text-align: left; }
-  .to p { color: var(--muted); font-size: 10pt; }
-  .to .line { height: 14mm; border-bottom: .4mm solid var(--gold); }
+  .seal span { font: 800 9.5mm/1 "Zodiak", serif; letter-spacing: -.04em; margin-top: -1mm; }
+  .front .display { font-size: 10mm; text-transform: uppercase; margin-top: 7mm; }
+  /* Lyst navnefelt, så navnet kan skrives med en almindelig sort kuglepen og er det første man ser */
+  .to {
+    width: 100%; margin-top: 9mm; position: relative; z-index: 6;
+    background: var(--paper-light); color: var(--bg);
+    box-shadow: inset 0 0 0 .5mm var(--gold), inset 0 0 0 2mm var(--paper-light), inset 0 0 0 2.3mm var(--gold);
+    padding: 9mm 9mm 8mm; display: grid; grid-template-rows: auto 1fr auto; text-align: center;
+  }
+  .to::before { content: ""; position: absolute; inset: 0; background: var(--grain); background-size: 150px; opacity: .45; pointer-events: none; }
+  .to .lbl { font: 800 9pt/1 "Zodiak", serif; letter-spacing: .22em; text-transform: uppercase; color: var(--wine); }
+  .to .line { border-bottom: .4mm solid var(--bg); margin: 0 2mm 24mm; }
+  .to .foot { font-size: 8.5pt; color: #5b544b; }
 
   /* ---------- Inderside ---------- */
   .left { grid-template-rows: auto 1fr auto; gap: 8mm; }
-  .dear { display: flex; align-items: baseline; gap: 3mm; font-size: 11pt; }
-  .dear .line { flex: 1; border-bottom: .4mm solid var(--gold); height: 9mm; }
+  .dear { display: flex; align-items: flex-end; gap: 3mm; font-size: 11pt; position: relative; z-index: 6; background: var(--paper-light); color: var(--bg); padding: 3mm 5mm 3.5mm; box-shadow: inset 0 0 0 .4mm var(--gold); }
+  .dear::before { content: ""; position: absolute; inset: 0; background: var(--grain); background-size: 150px; opacity: .45; pointer-events: none; }
+  .dear .line { flex: 1; border-bottom: .4mm solid var(--bg); height: 12mm; }
   .left figure { position: relative; overflow: hidden; min-height: 0; }
   .left figure img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 18%; filter: grayscale(1) contrast(1.6) brightness(.8); }
   .left figure::after { content: ""; position: absolute; inset: 0; background: var(--grain), var(--grain); background-size: 120px, 70px; mix-blend-mode: overlay; }
@@ -97,8 +106,9 @@
     <div class="seal"><span>S&amp;T</span></div>
     <p class="display">Studentergilde</p>
     <div class="to">
-      <p>Invitation til</p>
+      <p class="lbl">Invitation til</p>
       <div class="line"></div>
+      <p class="foot">Tirsdag 6. juli 2027</p>
     </div>
   </div>
 </section>
