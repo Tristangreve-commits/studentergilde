@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Drinkskort, til print</title>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<style>
+  /* Drinkskort til baren, A4 på højkant. Sæt det i en ramme, eller læg det på bordet. */
+  @page { size: A4; margin: 0; }
+  :root {
+    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #777; font: 400 10.5pt/1.45 "General Sans", sans-serif; color: var(--ink); }
+  .page {
+    width: 210mm; height: 297mm; margin: 10mm auto; overflow: hidden; position: relative;
+    background: var(--bg) var(--grain); background-size: 150px;
+    padding: 16mm 16mm 14mm; display: grid; grid-template-rows: auto auto auto 1fr auto;
+  }
+  @media print { body { background: none; } .page { margin: 0; } }
+  .display { font-family: "Zodiak", serif; font-weight: 800; letter-spacing: -.03em; line-height: .9; }
+  .top { display: flex; justify-content: space-between; align-items: center; color: var(--gold); }
+  .seal { width: 16mm; height: 16mm; border-radius: 50%; background: var(--gold) var(--grain); color: var(--bg); display: grid; place-items: center; font: 800 6mm/1 "Zodiak", serif; letter-spacing: -.04em; }
+  .top p { font-size: 9.5pt; }
+  h1 { margin-top: 10mm; font-size: 46mm; text-transform: uppercase; letter-spacing: -.05em; line-height: .78; }
+  h1 span { display: block; font-size: 8.5mm; letter-spacing: -.02em; color: var(--gold); margin-top: 3mm; }
+
+  /* De to signaturdrinks fylder mest */
+  .sig { margin-top: 12mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .sig div { border-top: .5mm solid var(--gold); padding-top: 4mm; }
+  .sig h2 { font-size: 21mm; text-transform: uppercase; }
+  .sig p { margin-top: 3mm; font-size: 10.5pt; }
+  .sig small { display: block; margin-top: 1.5mm; color: var(--muted); font-size: 9pt; }
+
+  .menu { margin-top: 16mm; display: grid; grid-template-columns: 1fr 1fr; gap: 7mm 10mm; align-content: start; }
+  .menu h3 { font: 800 13pt/1 "Zodiak", serif; color: var(--gold); margin-bottom: 2.5mm; }
+  .menu li { list-style: none; display: flex; justify-content: space-between; gap: 4mm; padding: 1.6mm 0; border-bottom: .2mm solid #2c2824; font-size: 10.5pt; }
+  .menu li span:last-child { color: var(--muted); text-align: right; }
+
+  .foot { display: flex; justify-content: space-between; align-items: end; gap: 10mm; font-size: 9.5pt; color: var(--muted); }
+  .foot strong { display: block; font: 800 15pt/1 "Zodiak", serif; color: var(--ink); margin-bottom: 1.5mm; }
+
+  /* Filmkorn over alt */
+  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 120px; mix-blend-mode: overlay; opacity: .5; }
+  /* Slidt fotokopi som en lille detalje oven på kornet */
+  .kopi { position: absolute; inset: 0; pointer-events: none; z-index: 5; background: url(../img/kopi-b.svg) center / cover no-repeat; mix-blend-mode: difference; opacity: .22; }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="top"><div class="seal">S&amp;T</div><p>Tirsdag 6. juli 2027</p></div>
+
+  <h1 class="display">Baren<span>Sam &amp; Tristans studentergilde</span></h1>
+
+  <div class="sig">
+    <div>
+      <h2 class="display">Sam</h2>
+      <p>Mørk rom, ginger beer og lime på masser af is.</p>
+      <small>Stærk, krydret og lidt farlig.</small>
+    </div>
+    <div>
+      <h2 class="display">Tristan</h2>
+      <p>Gin, tonic, agurk og en skive citron.</p>
+      <small>Frisk, klar og går lige i blodet.</small>
+    </div>
+  </div>
+
+  <div class="menu">
+    <div>
+      <h3>Drinks</h3>
+      <ul>
+        <li><span>Vodka og Red Bull</span><span>Til dansegulvet</span></li>
+        <li><span>Vodka og lemon</span><span>Klassikeren</span></li>
+        <li><span>Rom og cola</span><span>Med lime</span></li>
+        <li><span>Gin og lemon</span><span>Med is og lime</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Bobler og øl</h3>
+      <ul>
+        <li><span>Bobler</span><span>Til skålen</span></li>
+        <li><span>Kold øl</span><span>Hele natten</span></li>
+        <li><span>Shots</span><span>Spørg i baren</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Uden alkohol</h3>
+      <ul>
+        <li><span>Ginger beer, lime og mynte</span><span>Som en Sam</span></li>
+        <li><span>Sodavand og danskvand</span><span>Med is</span></li>
+        <li><span>Vand</span><span>Drik et glas ind imellem</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Natten</h3>
+      <ul>
+        <li><span>21.00</span><span>Baren åbner</span></li>
+        <li><span>23.00</span><span>DJ set</span></li>
+        <li><span>Ved 01</span><span>Natmad</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div><strong>Alt i baren er gratis.</strong>Skål for os, og pas på hinanden.</div>
+    <p>Standgårdsparken 158</p>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('.page').forEach((el) => {
+    for (const k of ['korn', 'kopi']) { const lag = document.createElement('i'); lag.className = k; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag); }
+  });
+</script>
+</body>
+</html>

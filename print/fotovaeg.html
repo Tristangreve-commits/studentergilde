@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Fotovæg, til stort print</title>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500&display=swap" rel="stylesheet">
+<style>
+  /* Fotovæg til rød løber, 240 x 240 cm. Alt er vektor, så den kan skaleres til andre størrelser uden at blive sløret.
+     Uden filmkorn, så den står skarpt på billederne, også med blitz. */
+  @page { size: 2400mm 2400mm; margin: 0; }
+  :root { --bg: #0f0d0c; --ink: #e7e4de; --gold: #d6b25e; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: var(--bg); }
+  .wall {
+    width: 2400mm; height: 2400mm; overflow: hidden; background: var(--bg);
+    display: grid; grid-template-rows: repeat(6, 400mm);
+  }
+  .row { display: grid; grid-template-columns: repeat(6, 480mm); place-items: center; }
+  /* hver anden række er rykket en halv plads, så logoerne står forskudt */
+  .row:nth-child(even) { margin-left: -240mm; }
+  .seal {
+    width: 190mm; height: 190mm; border-radius: 50%; background: var(--gold); color: var(--bg);
+    display: grid; place-items: center;
+  }
+  .seal span { font: 800 76mm/1 "Zodiak", serif; letter-spacing: -.04em; margin-top: -6mm; }
+  .word { text-align: center; color: var(--ink); }
+  .word b { display: block; font: 800 50mm/.9 "Zodiak", serif; letter-spacing: -.03em; text-transform: uppercase; }
+  .word i { display: block; font: 800 92mm/.9 "Zodiak", serif; font-style: normal; color: var(--gold); letter-spacing: -.02em; margin-top: 8mm; }
+</style>
+</head>
+<body>
+<div class="wall" id="wall"></div>
+<script>
+  const wall = document.getElementById('wall');
+  const seal = '<div class="seal"><span>S&amp;T</span></div>';
+  const word = '<div class="word"><b>Studentergilde</b><i>2027</i></div>';
+  for (let r = 0; r < 6; r++) {
+    const row = document.createElement('div'); row.className = 'row';
+    // rækkerne skifter, hvad de starter med, så segl og navn aldrig står lige under hinanden
+    for (let c = 0; c < 6; c++) row.innerHTML += ((c + r) % 2 ? word : seal);
+    wall.appendChild(row);
+  }
+</script>
+</body>
+</html>
