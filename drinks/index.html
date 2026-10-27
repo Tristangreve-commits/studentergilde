@@ -16,7 +16,7 @@
   /* Drinkssiden. Bygger på style.css og tilføjer kun det, siden selv har brug for. */
   .d-hero { padding: 0 0 clamp(32px, 6vw, 72px); }
   .d-hero .topbar { padding-bottom: clamp(40px, 8vw, 96px); }
-  .d-title { padding: 0 var(--m); font: 800 26.5vw/.78 var(--display); letter-spacing: -.06em; text-transform: uppercase; margin-left: -.03em; }
+  .d-title { padding: 0 var(--m); font: 800 25vw/.78 var(--display); letter-spacing: -.06em; text-transform: uppercase; margin-left: -.03em; }
   .d-sub { padding: 20px var(--m) 0; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: var(--step-lead); }
   .d-sub span:last-child { color: var(--accent); }
 
@@ -87,6 +87,7 @@
 </footer>
 
 <script src="data.js?v=1"></script>
+<script src="../app.js?v=8"></script>
 <script>
   const B = window.BAREN;
   document.getElementById('signatur').insertAdjacentHTML('beforeend', B.signatur.map((d) =>
