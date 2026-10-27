@@ -7,10 +7,19 @@ window.BAREN = {
     { navn: 'Huen', glas: 'coupe', ind: 'Bobler, hyldeblomst og citron', om: 'Til skålen, når huen kommer på.' }
   ],
   grupper: [
+    { navn: 'Cocktails', glas: 'coupe', liste: [
+      ['Mojito', 'Hvid rom, lime, mynte og danskvand'],
+      ['Moscow Mule', 'Vodka, ginger beer og lime'],
+      ['Pornstar Martini', 'Vaniljevodka, passionsfrugt og et skud bobler'],
+      ['Espresso Martini', 'Vodka, kaffelikør og espresso'],
+      ['Aperol Spritz', 'Aperol, bobler og danskvand']
+    ] },
     { navn: 'Drinks', glas: 'tumbler', liste: [
       ['Vodka og Red Bull', 'Til dansegulvet'],
       ['Vodka og lemon', 'Klassikeren'],
+      ['Vodka og juice', 'Appelsin eller tranebær'],
       ['Rom og cola', 'Med lime'],
+      ['Gin Hass', 'Gin, mangojuice, lime og lemon'],
       ['Gin og hyldeblomst', 'Med danskvand']
     ] },
     { navn: 'Bobler og øl', glas: 'flute', liste: [
