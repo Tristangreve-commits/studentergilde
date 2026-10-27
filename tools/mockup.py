@@ -1,7 +1,7 @@
 # Laver et mere fotorealistisk mockup af fotovæggen: et rigtigt festlokale sløret i baggrunden,
+# stof med folder og glans, stativ, rød løber og guldstolper, blitzlys, korn og linsefejl.
 # Baggrunden er et foto fra Wikimedia Commons: "DZ6 0468 Spacious elegantly lit banquet hall" af PattayaPatrol, CC BY-SA 4.0.
 # Mockuppen bygger på det foto, så den deles under samme licens med kredit.
-# stof med folder og glans, stativ, rød løber og guldstolper, blitzlys, korn og linsefejl.
 # Kør med FaceFusion-miljøets Python, der har opencv og numpy:
 #   ~/facefusion-lokal/app/.venv/bin/python tools/mockup.py <baggrundsfoto> <ud.png>
 import sys, os
