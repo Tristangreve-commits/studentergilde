@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baren hos Sam & Tristan</title>
+<meta name="description" content="Drinkskortet til Sam & Tristans studentergilde, tirsdag 6. juli 2027.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f0d0c">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=10">
+<style>
+  /* Drinkssiden. Bygger på style.css og tilføjer kun det, siden selv har brug for. */
+  .d-hero { padding: 0 0 clamp(32px, 6vw, 72px); }
+  .d-hero .topbar { padding-bottom: clamp(40px, 8vw, 96px); }
+  .d-title { padding: 0 var(--m); font: 800 26.5vw/.78 var(--display); letter-spacing: -.06em; text-transform: uppercase; margin-left: -.03em; }
+  .d-sub { padding: 20px var(--m) 0; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: var(--step-lead); }
+  .d-sub span:last-child { color: var(--accent); }
+
+  .d-sig { padding: clamp(48px, 8vw, 120px) var(--m); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); background: var(--wine); }
+  .d-sig h2 { grid-column: 1 / -1; font: 800 var(--step-head)/.9 var(--display); letter-spacing: -.035em; margin-bottom: clamp(16px, 3vw, 40px); }
+  .sig { container-type: inline-size; border-top: 2px solid var(--accent); padding-top: 20px; display: grid; gap: 12px; align-content: start; }
+  .sig .glas { width: 56px; height: 56px; color: var(--accent); }
+  .sig h3 { font: 800 min(clamp(2.75rem, 1.5rem + 4vw, 5.5rem), 18cqw)/.85 var(--display); letter-spacing: -.045em; text-transform: uppercase; }
+  .sig p { max-width: 30ch; }
+  .sig small { color: var(--muted); font-size: var(--step-body); }
+
+  .d-menu { padding: clamp(56px, 9vw, 140px) var(--m); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px); }
+  .gruppe h2 { display: flex; align-items: end; gap: 10px; font: 800 var(--step-lead)/1 var(--display); color: var(--accent); margin-bottom: 14px; }
+  .gruppe .glas { width: 34px; height: 34px; flex: none; }
+  .gruppe li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #2c2824; }
+  .gruppe li span:last-child { color: var(--muted); text-align: right; }
+
+  .d-note { padding: 0 var(--m) clamp(56px, 9vw, 140px); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end; }
+  .d-note figure { grid-column: 1 / 7; aspect-ratio: 4 / 3; }
+  .d-note div { grid-column: 8 / 13; display: grid; gap: 16px; }
+  .d-note strong { font: 800 var(--step-head)/.9 var(--display); letter-spacing: -.035em; }
+
+  @media (max-width: 900px) {
+    .d-sig, .d-menu { grid-template-columns: 1fr; }
+    .d-note figure, .d-note div { grid-column: 1 / -1; }
+  }
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="blaek" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter></svg>
+
+<header class="d-hero">
+  <nav class="topbar">
+    <a href="#signatur">Signaturdrinks</a>
+    <a class="monogram" href="../" aria-label="Til forsiden">S&amp;T</a>
+    <a href="../">Festen</a>
+  </nav>
+  <h1 class="d-title rough">Baren</h1>
+  <p class="d-sub"><span>Sam &amp; Tristans studentergilde</span><span>Alt i baren er gratis</span></p>
+</header>
+
+<main>
+<section class="d-sig" id="signatur" aria-labelledby="sig-h">
+  <h2 id="sig-h" class="rough">Aftenens drinks</h2>
+</section>
+
+<section class="d-menu" id="menu" aria-label="Resten af baren"></section>
+
+<section class="d-note" aria-label="Til sidst">
+  <figure><img src="../img/champagne.jpg" width="1400" height="933" alt="Hænder der åbner en flaske champagne" loading="lazy"></figure>
+  <div>
+    <strong class="rough">Skål for os.</strong>
+    <p>Bestil ved baren, og spørg gerne efter en drink uden alkohol. Pas på hinanden, og drik et glas vand ind imellem.</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-cols">
+    <div><p>Adresse</p><p>Standgårdsparken 158</p></div>
+    <div><p>Tid</p><p>Tirsdag 6. juli 2027</p><p>Baren åbner kl. 21</p></div>
+    <div><p>DJ set</p><p>Fra kl. 23</p></div>
+    <div><p>Natmad</p><p>Omkring kl. 01</p></div>
+  </div>
+  <p class="wordmark rough" aria-hidden="true">Sam &amp; Tristan</p>
+  <p class="credits">Billede: <a href="https://commons.wikimedia.org/w/index.php?curid=91272451">Open a champagne bottle</a> af Ginny, CC BY-SA 2.0, via Wikimedia Commons.</p>
+</footer>
+
+<script src="data.js?v=1"></script>
+<script>
+  const B = window.BAREN;
+  document.getElementById('signatur').insertAdjacentHTML('beforeend', B.signatur.map((d) =>
+    `<article class="sig">${B.svg(d.glas)}<h3 class="rough">${d.navn}</h3><p>${d.ind}.</p><small>${d.om}</small></article>`).join(''));
+  document.getElementById('menu').innerHTML = B.grupper.map((g) =>
+    `<div class="gruppe"><h2>${B.svg(g.glas)}${g.navn}</h2><ul>${g.liste.map(([a, b]) => `<li><span>${a}</span><span>${b}</span></li>`).join('')}</ul></div>`).join('');
+</script>
+</body>
+</html>

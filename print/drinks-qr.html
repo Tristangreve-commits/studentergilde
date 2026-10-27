@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>QR-kort til drinkskortet, til print</title>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* Otte små kort på et A4 (105 x 74 mm). Klip dem ud, og stil dem på bordene eller ved baren.
+     QR-koden fører til drinkssiden. */
+  @page { size: A4; margin: 0; }
+  :root {
+    --bg: #0f0d0c; --ink: #e7e4de; --muted: #a39d92; --gold: #d6b25e;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #777; font: 400 9pt/1.35 "General Sans", sans-serif; color: var(--ink); }
+  .sheet { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: repeat(4, 74.25mm); }
+  @media print { body { background: none; } .sheet { margin: 0; } }
+  .card {
+    position: relative; overflow: hidden; outline: .2mm solid #fff;
+    background: var(--bg) var(--grain); background-size: 150px;
+    padding: 7mm; display: grid; grid-template-columns: minmax(0, 1fr) 36mm; gap: 6mm;
+  }
+  .card:nth-child(4n+2), .card:nth-child(4n+3) { background-color: #3a1016; }
+  .left { display: grid; grid-template-rows: auto 1fr auto; }
+  .top { display: flex; align-items: center; gap: 2.5mm; color: var(--gold); font-size: 8pt; }
+  .seal { width: 8mm; height: 8mm; border-radius: 50%; background: var(--gold); color: var(--bg); display: grid; place-items: center; font: 800 3mm/1 "Zodiak", serif; letter-spacing: -.04em; }
+  h2 { align-self: center; font: 800 12.5mm/.8 "Zodiak", serif; letter-spacing: -.06em; text-transform: uppercase; margin-left: -.6mm; }
+  .left p { font-size: 9pt; }
+  .left p b { display: block; font: 800 12pt/1.05 "Zodiak", serif; color: var(--gold); margin-bottom: 1mm; }
+  .qrbox { align-self: center; display: grid; gap: 2mm; justify-items: center; text-align: center; font-size: 7.5pt; color: var(--muted); }
+  .qr { width: 36mm; height: 36mm; background: var(--ink); padding: 2mm; position: relative; z-index: 6; }
+  .qr svg { width: 100%; height: 100%; display: block; }
+
+  /* Filmkorn over alt */
+  .korn { position: absolute; inset: 0; pointer-events: none; z-index: 5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncG type='linear' slope='3.2' intercept='-1.1'/%3E%3CfeFuncB type='linear' slope='3.2' intercept='-1.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 120px; mix-blend-mode: overlay; opacity: .5; }
+  .kopi { position: absolute; inset: 0; pointer-events: none; z-index: 5; background: url(../img/kopi-a.svg) center / cover no-repeat; mix-blend-mode: difference; opacity: .5; background-size: 220% auto; }
+  .kopi.b { background-image: url(../img/kopi-b.svg); background-position: 70% 30%; }
+</style>
+</head>
+<body>
+<section class="sheet" id="sheet"></section>
+
+<template id="kort">
+  <div class="card">
+    <div class="left">
+      <div class="top"><span class="seal">S&amp;T</span><span>Studentergilde 2027</span></div>
+      <h2>Baren</h2>
+      <p><b>Sam, Tristan og Huen</b>Scan og se aftenens drinks. Alt i baren er gratis.</p>
+    </div>
+    <div class="qrbox"><div class="qr"></div><span>Drinkskortet</span></div>
+  </div>
+</template>
+
+<script>
+  const qr = qrcode(0, 'M'); qr.addData('https://tristangreve-commits.github.io/studentergilde/drinks/'); qr.make();
+  const svg = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  const sheet = document.getElementById('sheet'), tpl = document.getElementById('kort');
+  for (let i = 0; i < 8; i++) {
+    const c = tpl.content.cloneNode(true);
+    c.querySelector('.qr').innerHTML = svg;
+    sheet.appendChild(c);
+  }
+  document.querySelectorAll('.card').forEach((el, i) => {
+    const lag = document.createElement('i'); lag.className = 'korn'; lag.setAttribute('aria-hidden', 'true'); el.appendChild(lag);
+    const kopi = document.createElement('i'); kopi.className = 'kopi' + (i % 2 ? ' b' : ''); kopi.setAttribute('aria-hidden', 'true'); el.appendChild(kopi);
+  });
+</script>
+</body>
+</html>
