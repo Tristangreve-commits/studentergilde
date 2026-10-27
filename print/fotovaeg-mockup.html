@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Fotovæg, mockup</title>
+<style>
+  /* Tegnet mockup af fotovæggen på sit stativ med rød løber. Skala: 1 cm er 3,2 px. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1600px; height: 1100px; overflow: hidden; background: #000; }
+  .scene { position: relative; width: 1600px; height: 1100px; overflow: hidden;
+    background:
+      radial-gradient(ellipse 900px 700px at 50% 38%, #3a3430 0%, #1c1916 55%, #0b0a09 100%); }
+  /* gulvet */
+  .floor { position: absolute; left: 0; right: 0; top: 880px; bottom: 0;
+    background: linear-gradient(#2a2420, #120f0d 70%); }
+  .floor::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 120px, rgba(0,0,0,.06) 120px 122px); }
+  /* lyset fra en spot foran væggen */
+  .spot { position: absolute; inset: 0; background: radial-gradient(ellipse 620px 560px at 50% 50%, rgba(255,236,200,.16), transparent 70%); pointer-events: none; z-index: 4; mix-blend-mode: screen; }
+
+  /* stativet */
+  .pole { position: absolute; top: 92px; width: 9px; height: 790px; border-radius: 3px;
+    background: linear-gradient(90deg, #0d0d0d, #6b6b6b 40%, #1a1a1a 70%, #050505); z-index: 2; }
+  .pole.l { left: 404px; } .pole.r { left: 1187px; }
+  .pole::after { content: ""; position: absolute; left: -2px; right: -2px; top: 360px; height: 14px; border-radius: 2px; background: linear-gradient(90deg, #111, #555 45%, #111); }
+  .bar { position: absolute; top: 96px; left: 392px; width: 816px; height: 8px; border-radius: 4px; z-index: 3;
+    background: linear-gradient(#777, #222 60%, #0a0a0a); }
+  .foot { position: absolute; top: 868px; z-index: 1; }
+  .foot svg { display: block; }
+
+  /* banneret */
+  .banner { position: absolute; top: 100px; left: 416px; width: 768px; height: 768px; z-index: 3;
+    background: url(fotovaeg-preview.png) center / cover; box-shadow: 0 30px 60px rgba(0,0,0,.6); }
+  .banner::before { content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.28), transparent 8%, transparent 92%, rgba(0,0,0,.3)),
+      linear-gradient(rgba(0,0,0,.25), transparent 4%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 34px, rgba(0,0,0,.05) 34px 70px, rgba(255,255,255,.02) 70px 96px); }
+  /* lommen øverst, hvor stangen går igennem */
+  .banner::after { content: ""; position: absolute; left: 0; right: 0; top: -6px; height: 18px; background: linear-gradient(#141210, #0b0a09); border-bottom: 1px solid rgba(255,255,255,.06); }
+  .shadow { position: absolute; top: 862px; left: 360px; width: 880px; height: 44px; border-radius: 50%; background: radial-gradient(rgba(0,0,0,.75), transparent 70%); z-index: 1; }
+
+  /* rød løber i perspektiv */
+  .carpet { position: absolute; left: 0; top: 0; width: 1600px; height: 1100px; z-index: 2; pointer-events: none; }
+
+  /* afspærring med guldstolper og røde reb */
+  .ropes { position: absolute; left: 0; top: 0; z-index: 6; }
+
+  .korn { position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: .35; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size: 120px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="floor"></div>
+  <div class="shadow"></div>
+
+  <div class="foot" style="left:330px"><svg width="160" height="40" viewBox="0 0 160 40"><path d="M78 0 L82 0 L160 30 L156 36 L80 8 L4 36 L0 30 Z" fill="#161616"/><path d="M78 0 L82 0 L84 40 L76 40 Z" fill="#202020"/></svg></div>
+  <div class="foot" style="left:1112px"><svg width="160" height="40" viewBox="0 0 160 40"><path d="M78 0 L82 0 L160 30 L156 36 L80 8 L4 36 L0 30 Z" fill="#161616"/><path d="M78 0 L82 0 L84 40 L76 40 Z" fill="#202020"/></svg></div>
+  <div class="pole l"></div><div class="pole r"></div>
+  <div class="banner"></div>
+  <div class="bar"></div>
+
+  <svg class="carpet" viewBox="0 0 1600 1100">
+    <defs>
+      <linearGradient id="rod" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a0e14"/><stop offset="1" stop-color="#8e1520"/></linearGradient>
+    </defs>
+    <path d="M520 880 L1080 880 L1360 1100 L240 1100 Z" fill="url(#rod)"/>
+    <path d="M520 880 L1080 880 L1086 885 L514 885 Z" fill="#3a080c"/>
+  </svg>
+
+  <svg class="ropes" width="1600" height="1100" viewBox="0 0 1600 1100">
+    <defs>
+      <linearGradient id="guld" x1="0" x2="1"><stop offset="0" stop-color="#7a5d22"/><stop offset=".45" stop-color="#f1d58a"/><stop offset="1" stop-color="#6b5019"/></linearGradient>
+      <g id="stolpe">
+      <ellipse cx="0" cy="190" rx="44" ry="11" fill="#000" opacity=".5"/>
+      <ellipse cx="0" cy="182" rx="40" ry="12" fill="url(#guld)"/>
+      <rect x="-7" y="0" width="14" height="182" fill="url(#guld)"/>
+      <circle cx="0" cy="-6" r="13" fill="url(#guld)"/>
+      </g>
+      <linearGradient id="reb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c0262f"/><stop offset="1" stop-color="#5e0b10"/></linearGradient>
+    </defs>
+    <!-- venstre side -->
+    <path d="M168 846 Q 290 920 400 800" stroke="url(#reb)" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <!-- højre side -->
+    <path d="M1200 800 Q 1310 920 1432 846" stroke="url(#reb)" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <use href="#stolpe" x="160" y="842"/>
+    <use href="#stolpe" x="1440" y="842"/>
+    <use href="#stolpe" x="404" y="790" transform="translate(404 790) scale(.82) translate(-404 -790)"/>
+    <use href="#stolpe" x="1196" y="790" transform="translate(1196 790) scale(.82) translate(-1196 -790)"/>
+  </svg>
+
+  <div class="spot"></div>
+  <div class="korn"></div>
+</div>
+</body>
+</html>
